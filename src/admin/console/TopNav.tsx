@@ -33,11 +33,11 @@ export function TopNav({ className }: TopNavProps) {
       <div className="relative">
         <button
           onClick={() => setIsLangMenuOpen(!isLangMenuOpen)}
-          className="flex items-center gap-x-2 rounded-md bg-white p-1.5 text-sm font-semibold text-gray-900 hover:bg-gray-50 focus:outline-none"
+          className="flex items-center gap-x-2 rounded-md bg-primary-white p-1.5 text-sm font-semibold text-primary-dark hover:bg-primary-light focus:outline-none"
         >
-          <Globe className="h-5 w-5 text-gray-500" />
+          <Globe className="h-5 w-5 text-primary-dark" />
           <span>{t(`console.language.${i18n.language}`)}</span>
-          <ChevronDown className="h-4 w-4 text-gray-400" />
+          <ChevronDown className="h-4 w-4 text-primary-dark" />
         </button>
 
         {isLangMenuOpen && (
@@ -46,7 +46,7 @@ export function TopNav({ className }: TopNavProps) {
               className="fixed inset-0 z-30"
               onClick={() => setIsLangMenuOpen(false)}
             />
-            <div className="absolute right-0 z-40 mt-2 w-40 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5">
+            <div className="absolute right-0 z-40 mt-2 w-40 origin-top-right rounded-md bg-primary-white py-1 shadow-lg ring-1 ring-primary-light">
               {SUPPORTED_LANGUAGES.map((lang) => (
                 <button
                   key={lang}
@@ -55,8 +55,8 @@ export function TopNav({ className }: TopNavProps) {
                     setIsLangMenuOpen(false);
                   }}
                   className={cn(
-                    'flex w-full items-center px-4 py-2 text-sm hover:bg-gray-100',
-                    lang === i18n.language ? 'text-indigo-600 font-medium' : 'text-gray-700'
+                    'flex w-full items-center px-4 py-2 text-sm hover:bg-primary-light',
+                    lang === i18n.language ? 'text-primary-dark font-medium' : 'text-secondary-gray'
                   )}
                 >
                   {t(`console.language.${lang}`)}
@@ -94,13 +94,30 @@ export function TopNav({ className }: TopNavProps) {
               className="fixed inset-0 z-30"
               onClick={() => setIsUserMenuOpen(false)}
             />
-            <div className="absolute right-0 z-40 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5">
+            <div className="absolute right-0 z-40 mt-2 w-80 origin-top-right rounded-md bg-primary-white py-1 shadow-lg ring-1 ring-primary-light">
+              <div className="px-4 py-2">
+                <p className="text-xs text-secondary-gray">{t('console.signedInAs')}</p>
+                <p className="truncate text-sm font-medium text-primary-dark">
+                  {currentUser?.email}
+                </p>
+              </div>
+              <div className="border-t border-primary-light" />
+              <button
+                onClick={() => {
+                  setIsUserMenuOpen(false);
+                  // Add profile navigation here
+                }}
+                className="flex w-full items-center gap-x-2 px-4 py-2 text-sm text-primary-dark hover:bg-primary-light"
+              >
+                <User className="h-4 w-4" />
+                {t('console.profile')}
+              </button>
               <button
                 onClick={() => {
                   setIsUserMenuOpen(false);
                   handleSignOut();
                 }}
-                className="flex w-full items-center gap-x-2 px-4 py-2 text-sm text-gray-700 hover:bg-gray-100"
+                className="flex w-full items-center gap-x-2 px-4 py-2 text-sm text-primary-dark hover:bg-primary-light"
               >
                 <LogOut className="h-4 w-4" />
                 {t('console.signOut')}

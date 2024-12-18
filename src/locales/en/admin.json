@@ -17,6 +17,7 @@
     "signOut": "Sign Out",
     "profile": "Profile",
     "user": "User",
+    "signedInAs": "Signed in as",
     "toggleSidebar": "Toggle Sidebar",
     "manage": {
       "title": "Manage",

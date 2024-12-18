@@ -1,27 +1,29 @@
 /** @type {import('tailwindcss').Config} */
 export default {
-  content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}'],
+  content: [
+    "./index.html",
+    "./src/**/*.{js,ts,jsx,tsx}",
+  ],
   theme: {
     extend: {
+      fontFamily: {
+        sans: ['Poppins', 'sans-serif'],
+      },
       colors: {
         primary: {
-          DEFAULT: '#2563eb',
-          foreground: '#ffffff',
+          dark: '#073D42',
+          light: '#96D1DC',
+          white: '#FFFFFF',
         },
         secondary: {
-          DEFAULT: '#4f46e5',
-          foreground: '#ffffff',
+          yellow: '#F7EA78',
+          green: '#BCFBC6',
+          purple: '#958EDA',
+          'light-purple': '#B9ABED',
+          gray: '#515151',
         },
-        accent: {
-          DEFAULT: '#f3f4f6',
-          foreground: '#1f2937',
-        },
-        background: '#ffffff',
-        foreground: '#1f2937',
-        border: '#e5e7eb',
-        input: '#d1d5db',
       },
     },
   },
   plugins: [require('@tailwindcss/forms')],
-};
+}

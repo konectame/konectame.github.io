@@ -12,7 +12,8 @@ import {
   ListFilter,
   FileText,
   Settings,
-  ChevronRight,
+  ChevronDown,
+  ChevronUp,
   LogOut,
   ClipboardList,
   Star,
@@ -147,9 +148,9 @@ const navigation: NavItem[] = [
   }
 ];
 
-const IconComponent = ({ name }: { name: string }) => {
+const IconComponent = ({ name, className }: { name: string, className?: string }) => {
   const Icon = icons[name] || Settings;
-  return <Icon className="h-5 w-5 shrink-0 text-gray-400" />;
+  return <Icon className={className || "h-5 w-5 shrink-0 text-gray-400"} />;
 };
 
 export default function AdminConsole() {
@@ -184,13 +185,13 @@ export default function AdminConsole() {
   return (
     <div className="flex min-h-screen">
       <div className={cn(
-        "flex flex-col transition-all duration-300 ease-in-out",
-        sidebarOpen ? "w-72" : "w-16"
+        "hidden lg:fixed lg:inset-y-0 lg:z-50 lg:flex lg:w-72 lg:flex-col",
+        sidebarOpen ? "lg:w-72" : "lg:w-20"
       )}>
-        <div className="flex grow flex-col gap-y-5 overflow-y-auto border-r border-gray-200 bg-white px-6">
+        <div className="flex grow flex-col gap-y-5 overflow-y-auto border-r border-primary-light bg-primary-white px-6 pb-4">
           <div className="flex h-16 shrink-0 items-center justify-between">
             {sidebarOpen && (
-              <div className="h-8 w-auto flex items-center justify-center">
+              <div className="h-8 w-auto flex items-center">
                 <img
                   className="h-8 w-auto object-contain"
                   src={marketplace?.logo || DEFAULT_MARKETPLACE.logo}
@@ -203,117 +204,119 @@ export default function AdminConsole() {
               </div>
             )}
             <button
-              onClick={toggleSidebar}
-              className="rounded-lg p-1.5 hover:bg-gray-100 focus:outline-none"
+              type="button"
+              className={cn(
+                "rounded-lg p-1.5",
+                "text-primary-dark hover:bg-primary-light focus:outline-none",
+                !sidebarOpen && "w-full flex justify-center"
+              )}
+              onClick={() => setSidebarOpen(!sidebarOpen)}
             >
-              <Menu className="h-5 w-5 text-gray-500" />
+              <Menu className="h-5 w-5" />
             </button>
           </div>
-          <nav className={cn(
-            "flex flex-1 flex-col",
-            !sidebarOpen && "items-center"
-          )}>
-            <ul role="list" className="flex flex-1 flex-col gap-y-7 w-full">
-              <li>
-                <ul role="list" className="-mx-2 space-y-1">
-                  {navigation.map((section) => (
-                    <li key={section.name} className="space-y-1">
-                      <div className="px-2 py-2">
-                        <div className={cn(
-                          "flex items-center gap-x-3",
-                          !sidebarOpen && "justify-center"
-                        )}>
-                          <section.icon className="h-5 w-5 shrink-0 text-gray-400" />
-                          {sidebarOpen && (
-                            <span className="text-sm font-semibold text-gray-900">
-                              {t(`console.${section.name}.title`)}
-                            </span>
-                          )}
-                        </div>
-                      </div>
-                      {section.children && (
-                        <ul className="space-y-1">
-                          {section.children.map((item) => (
-                            <li key={item.name}>
-                              {!item.children ? (
-                                <button
-                                  onClick={() => navigate(item.href)}
-                                  className={cn(
-                                    "flex w-full items-center gap-x-3 rounded-md py-2 text-sm text-gray-700 hover:bg-gray-50",
-                                    sidebarOpen ? "pl-9 pr-2" : "justify-center px-2"
-                                  )}
-                                  title={!sidebarOpen ? t(`console.${section.name}.${item.name}.title`) : undefined}
-                                >
-                                  <IconComponent name={item.name} />
-                                  {sidebarOpen && t(`console.${section.name}.${item.name}.title`)}
-                                </button>
-                              ) : (
-                                <div>
-                                  <button
-                                    onClick={() => toggleExpand(item.name)}
-                                    className={cn(
-                                      "flex w-full items-center gap-x-3 rounded-md py-2 text-sm text-gray-700",
-                                      sidebarOpen ? "pl-9 pr-2" : "justify-center px-2",
-                                      expandedItems.includes(item.name) ? "bg-gray-50" : "hover:bg-gray-50"
-                                    )}
-                                    title={!sidebarOpen ? t(`console.${section.name}.${item.name}.title`) : undefined}
-                                  >
-                                    <IconComponent name={item.name} />
-                                    {sidebarOpen && (
-                                      <>
-                                        {t(`console.${section.name}.${item.name}.title`)}
-                                        <ChevronRight
-                                          className={cn(
-                                            "ml-auto h-4 w-4 shrink-0 text-gray-400 transition-transform",
-                                            expandedItems.includes(item.name) && "rotate-90"
-                                          )}
-                                        />
-                                      </>
-                                    )}
-                                  </button>
-                                  {expandedItems.includes(item.name) && item.children && (
-                                    <ul className="mt-1 space-y-1">
-                                      {item.children.map((subItem) => (
-                                        <li key={subItem.name}>
-                                          <button
-                                            onClick={() => navigate(subItem.href)}
-                                            className={cn(
-                                              "flex w-full items-center gap-x-3 rounded-md py-2 text-sm text-gray-700 hover:bg-gray-50",
-                                              sidebarOpen ? "pl-16 pr-2" : "justify-center px-2"
-                                            )}
-                                            title={!sidebarOpen ? t(`console.${section.name}.${item.name}.${subItem.name}.title`) : undefined}
-                                          >
-                                            <IconComponent name={subItem.name} />
-                                            {sidebarOpen && t(`console.${section.name}.${item.name}.${subItem.name}.title`)}
-                                          </button>
-                                        </li>
-                                      ))}
-                                    </ul>
-                                  )}
-                                </div>
-                              )}
-                            </li>
-                          ))}
-                        </ul>
-                      )}
-                    </li>
-                  ))}
-                </ul>
-              </li>
-              <li className="mt-auto">
-                <button
-                  onClick={handleSignOut}
-                  className={cn(
-                    "flex w-full items-center gap-x-3 rounded-md py-2 text-sm text-gray-700 hover:bg-gray-50",
-                    sidebarOpen ? "px-2" : "justify-center px-2"
+
+          <nav className="flex flex-1 flex-col">
+            <ul role="list" className="flex flex-1 flex-col gap-y-7">
+              {navigation.map((section) => (
+                <li key={section.name}>
+                  {sidebarOpen && (
+                    <div className="text-xs font-semibold leading-6 text-secondary-gray">
+                      {t(`console.${section.name}.title`)}
+                    </div>
                   )}
-                >
-                  <LogOut className="h-5 w-5 shrink-0 text-gray-400" />
-                  {sidebarOpen && <span>{t('console.signOut')}</span>}
-                </button>
-              </li>
+                  <ul role="list" className="-mx-2 mt-2 space-y-1">
+                    {section.children?.map((item) => (
+                      <li key={item.name}>
+                        {!item.children ? (
+                          <button
+                            onClick={() => navigate(item.href)}
+                            className={cn(
+                              "flex w-full items-center gap-x-3 rounded-md py-2 text-sm font-medium",
+                              "text-primary-dark hover:bg-primary-light hover:text-primary-dark",
+                              sidebarOpen ? "pl-3 pr-2" : "justify-center px-2"
+                            )}
+                            title={!sidebarOpen ? t(`console.${section.name}.${item.name}.title`) : undefined}
+                          >
+                            <IconComponent 
+                              name={item.name} 
+                              className="h-5 w-5 text-primary-dark"
+                            />
+                            {sidebarOpen && t(`console.${section.name}.${item.name}.title`)}
+                          </button>
+                        ) : (
+                          <div>
+                            <button
+                              onClick={() => toggleExpand(item.name)}
+                              className={cn(
+                                "flex w-full items-center gap-x-3 rounded-md py-2 text-sm font-medium",
+                                "text-primary-dark hover:bg-primary-light",
+                                expandedItems.includes(item.name) ? "bg-primary-light" : "",
+                                sidebarOpen ? "pl-3 pr-2" : "justify-center px-2"
+                              )}
+                              title={!sidebarOpen ? t(`console.${section.name}.${item.name}.title`) : undefined}
+                            >
+                              <IconComponent 
+                                name={item.name}
+                                className="h-5 w-5 text-primary-dark"
+                              />
+                              {sidebarOpen && (
+                                <>
+                                  {t(`console.${section.name}.${item.name}.title`)}
+                                  {expandedItems.includes(item.name) ? (
+                                    <ChevronUp className="ml-auto h-4 w-4 text-primary-dark" />
+                                  ) : (
+                                    <ChevronDown className="ml-auto h-4 w-4 text-primary-dark" />
+                                  )}
+                                </>
+                              )}
+                            </button>
+                            {expandedItems.includes(item.name) && item.children && (
+                              <ul className="mt-1 space-y-1">
+                                {item.children.map((subItem) => (
+                                  <li key={subItem.name}>
+                                    <button
+                                      onClick={() => navigate(subItem.href)}
+                                      className={cn(
+                                        "flex w-full items-center gap-x-3 rounded-md py-2 text-sm font-medium",
+                                        "text-primary-dark hover:bg-primary-light hover:text-primary-dark",
+                                        sidebarOpen ? "pl-6 pr-2" : "justify-center px-2"
+                                      )}
+                                      title={!sidebarOpen ? t(`console.${section.name}.${item.name}.${subItem.name}.title`) : undefined}
+                                    >
+                                      <IconComponent 
+                                        name={subItem.name}
+                                        className="h-5 w-5 text-primary-light"
+                                      />
+                                      {sidebarOpen && t(`console.${section.name}.${item.name}.${subItem.name}.title`)}
+                                    </button>
+                                  </li>
+                                ))}
+                              </ul>
+                            )}
+                          </div>
+                        )}
+                      </li>
+                    ))}
+                  </ul>
+                </li>
+              ))}
             </ul>
           </nav>
+
+          <div className="mt-auto pb-4">
+            <button
+              onClick={handleSignOut}
+              className={cn(
+                "flex w-full items-center gap-x-3 rounded-md p-2",
+                "text-sm font-medium text-primary-dark",
+                "hover:bg-primary-light hover:text-primary-dark"
+              )}
+            >
+              <LogOut className="h-5 w-5" />
+              {sidebarOpen && t('console.signOut')}
+            </button>
+          </div>
         </div>
       </div>
       <div className="flex-1 flex flex-col overflow-hidden">
