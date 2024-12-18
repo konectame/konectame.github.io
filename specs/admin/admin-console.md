@@ -247,6 +247,37 @@ The main admin interface component that provides navigation and layout structure
      - Commissions
      - Minimum Size
 
+## Design System
+
+### Typography
+- Primary Font: Poppins (300, 400, 500, 600, 700 weights)
+  - Used consistently across all components
+  - Loaded via Google Fonts
+
+### Color Palette
+- Primary Colors:
+  - Dark: `#073D42` - Used for text and icons
+  - Light: `#96D1DC` - Used for hover states and borders
+  - White: `#FFFFFF` - Used for backgrounds
+
+- Secondary Colors:
+  - Yellow: `#F7EA78` - Used for highlights and alerts
+  - Green: `#BCFBC6` - Used for success states
+  - Purple: `#958EDA` - Used for active states
+  - Light Purple: `#B9ABED` - Used for hover states
+  - Gray: `#515151` - Used for secondary text
+
+### Component Styling Updates
+- Menu Items:
+  - Left-aligned text for consistent readability
+  - Icon color matches text color
+  - Hover states use primary light color
+  - Active states use secondary purple
+- Dropdowns:
+  - Fixed width of 20rem (80)
+  - Consistent padding and spacing
+  - Smooth transitions on open/close
+
 ## Internationalization
 
 The admin console uses i18next for translations. Translation files are located in:
