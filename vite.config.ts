@@ -4,10 +4,18 @@ import path from 'path';
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  base: '',
+  base: '/',
   build: {
     outDir: 'docs',
-    emptyOutDir: true
+    emptyOutDir: true,
+    assetsDir: 'assets',
+    rollupOptions: {
+      output: {
+        assetFileNames: 'assets/[name]-[hash][extname]',
+        chunkFileNames: 'assets/[name]-[hash].js',
+        entryFileNames: 'assets/[name]-[hash].js',
+      }
+    }
   },
   plugins: [react()],
   resolve: {

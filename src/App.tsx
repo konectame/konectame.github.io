@@ -14,7 +14,7 @@ const base = import.meta.env.BASE_URL;
 function App() {
   return (
     <AuthProvider>
-      <Router>
+      <Router basename={base}>
         <ProfileProvider>
           <Routes>
             <Route path="/" element={<Navigate to="/admin/auth" replace />} />
