@@ -4,7 +4,7 @@ import path from 'path';
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  base: '/konectame.github.io/',
+  base: process.env.NODE_ENV === 'production' ? '/konectame.github.io/' : '/',
   plugins: [react()],
   resolve: {
     alias: {

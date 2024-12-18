@@ -8,27 +8,37 @@ import AdminConsole from './admin/console/AdminConsole';
 import AdminRoute from './admin/auth/AdminRoute';
 import Profile from './admin/profile/Profile';
 
+// Get the base URL from Vite environment
+const base = import.meta.env.BASE_URL;
+
 function App() {
   return (
     <AuthProvider>
-      <Router>
+      <Router basename={base}>
         <ProfileProvider>
           <Routes>
             <Route path="/" element={<Layout />}>
-              <Route index element={<Navigate to="/admin/console" />} />
+              <Route index element={<Navigate to="/admin/console" replace />} />
             </Route>
             <Route path="/admin/auth" element={<AdminAuth />} />
             <Route
-              path="/admin"
+              path="/admin/console"
               element={
                 <AdminRoute>
                   <AdminConsole />
                 </AdminRoute>
               }
-            >
-              <Route path="console" element={null} />
-              <Route path="profile" element={<Profile />} />
-            </Route>
+            />
+            <Route
+              path="/admin/profile"
+              element={
+                <AdminRoute>
+                  <Profile />
+                </AdminRoute>
+              }
+            />
+            {/* Catch-all redirect */}
+            <Route path="*" element={<Navigate to="/admin/console" replace />} />
           </Routes>
         </ProfileProvider>
       </Router>
