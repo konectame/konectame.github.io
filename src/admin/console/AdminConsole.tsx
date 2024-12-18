@@ -288,7 +288,11 @@ export default function AdminConsole() {
                                         name={subItem.name}
                                         className="h-5 w-5 text-primary-light"
                                       />
-                                      {sidebarOpen && t(`console.${section.name}.${item.name}.${subItem.name}.title`)}
+                                      {sidebarOpen && (
+                                        <span className="flex-1 text-left">
+                                          {t(`console.${section.name}.${item.name}.${subItem.name}.title`)}
+                                        </span>
+                                      )}
                                     </button>
                                   </li>
                                 ))}
