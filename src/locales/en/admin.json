@@ -1,0 +1,120 @@
+{
+  "auth": {
+    "login": "Admin Login",
+    "register": "Admin Registration",
+    "email": "Email address",
+    "password": "Password",
+    "signIn": "Sign in",
+    "registerAction": "Register",
+    "noAccount": "Don't have an account? Register",
+    "haveAccount": "Already have an account? Sign in",
+    "notAuthorized": "Not authorized as admin",
+    "emailPlaceholder": "Email address",
+    "passwordPlaceholder": "Password"
+  },
+  "console": {
+    "title": "Admin Console",
+    "signOut": "Sign Out",
+    "profile": "Profile",
+    "user": "User",
+    "toggleSidebar": "Toggle Sidebar",
+    "manage": {
+      "title": "Manage",
+      "users": {
+        "title": "Users"
+      },
+      "listings": {
+        "title": "Listings"
+      },
+      "transactions": {
+        "title": "Transactions"
+      },
+      "reviews": {
+        "title": "Reviews"
+      }
+    },
+    "configuration": {
+      "title": "Configuration",
+      "general": {
+        "title": "General",
+        "emailConfiguration": {
+          "title": "Email Configuration"
+        },
+        "localization": {
+          "title": "Localization"
+        },
+        "accessControl": {
+          "title": "Access Control"
+        }
+      },
+      "content": {
+        "title": "Content",
+        "navBar": {
+          "title": "Navigation Bar"
+        },
+        "footer": {
+          "title": "Footer"
+        },
+        "pages": {
+          "title": "Pages"
+        },
+        "texts": {
+          "title": "Texts"
+        },
+        "messagingTemplates": {
+          "title": "Messaging Templates"
+        }
+      },
+      "design": {
+        "title": "Design",
+        "branding": {
+          "title": "Branding"
+        },
+        "layout": {
+          "title": "Layout"
+        }
+      },
+      "users": {
+        "title": "Users",
+        "userTypes": {
+          "title": "User Types"
+        },
+        "userFields": {
+          "title": "User Fields"
+        }
+      },
+      "listings": {
+        "title": "Listings",
+        "listingTypes": {
+          "title": "Listing Types"
+        },
+        "listingCategories": {
+          "title": "Listing Categories"
+        },
+        "listingFields": {
+          "title": "Listing Fields"
+        },
+        "listingSearch": {
+          "title": "Search Configuration"
+        }
+      },
+      "transactions": {
+        "title": "Transactions",
+        "commissions": {
+          "title": "Commissions"
+        },
+        "minimumSize": {
+          "title": "Minimum Size"
+        }
+      }
+    },
+    "language": {
+      "title": "Language",
+      "en": "English",
+      "es": "Spanish"
+    }
+  },
+  "common": {
+    "loading": "Loading..."
+  }
+}

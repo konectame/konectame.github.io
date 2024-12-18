@@ -1,0 +1,120 @@
+{
+  "auth": {
+    "login": "Inicio de Sesión Admin",
+    "register": "Registro de Admin",
+    "email": "Correo electrónico",
+    "password": "Contraseña",
+    "signIn": "Iniciar sesión",
+    "registerAction": "Registrarse",
+    "noAccount": "¿No tienes cuenta? Regístrate",
+    "haveAccount": "¿Ya tienes cuenta? Inicia sesión",
+    "notAuthorized": "No autorizado como administrador",
+    "emailPlaceholder": "Correo electrónico",
+    "passwordPlaceholder": "Contraseña"
+  },
+  "console": {
+    "title": "Consola de Administración",
+    "signOut": "Cerrar Sesión",
+    "profile": "Perfil",
+    "user": "Usuario",
+    "toggleSidebar": "Alternar Barra Lateral",
+    "language": {
+      "title": "Idioma",
+      "en": "Inglés",
+      "es": "Español"
+    },
+    "manage": {
+      "title": "Gestionar",
+      "users": {
+        "title": "Usuarios"
+      },
+      "listings": {
+        "title": "Anuncios"
+      },
+      "transactions": {
+        "title": "Transacciones"
+      },
+      "reviews": {
+        "title": "Reseñas"
+      }
+    },
+    "configuration": {
+      "title": "Configuración",
+      "general": {
+        "title": "General",
+        "emailConfiguration": {
+          "title": "Configuración de Email"
+        },
+        "localization": {
+          "title": "Localización"
+        },
+        "accessControl": {
+          "title": "Control de Acceso"
+        }
+      },
+      "content": {
+        "title": "Contenido",
+        "navBar": {
+          "title": "Barra de Navegación"
+        },
+        "footer": {
+          "title": "Pie de Página"
+        },
+        "pages": {
+          "title": "Páginas"
+        },
+        "texts": {
+          "title": "Textos"
+        },
+        "messagingTemplates": {
+          "title": "Plantillas de Mensajes"
+        }
+      },
+      "design": {
+        "title": "Diseño",
+        "branding": {
+          "title": "Marca"
+        },
+        "layout": {
+          "title": "Disposición"
+        }
+      },
+      "users": {
+        "title": "Usuarios",
+        "userTypes": {
+          "title": "Tipos de Usuario"
+        },
+        "userFields": {
+          "title": "Campos de Usuario"
+        }
+      },
+      "listings": {
+        "title": "Anuncios",
+        "listingTypes": {
+          "title": "Tipos de Anuncio"
+        },
+        "listingCategories": {
+          "title": "Categorías de Anuncio"
+        },
+        "listingFields": {
+          "title": "Campos de Anuncio"
+        },
+        "listingSearch": {
+          "title": "Configuración de Búsqueda"
+        }
+      },
+      "transactions": {
+        "title": "Transacciones",
+        "commissions": {
+          "title": "Comisiones"
+        },
+        "minimumSize": {
+          "title": "Tamaño Mínimo"
+        }
+      }
+    }
+  },
+  "common": {
+    "loading": "Cargando..."
+  }
+}
