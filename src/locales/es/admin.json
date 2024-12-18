@@ -10,7 +10,13 @@
     "haveAccount": "¿Ya tienes cuenta? Inicia sesión",
     "notAuthorized": "No autorizado como administrador",
     "emailPlaceholder": "Correo electrónico",
-    "passwordPlaceholder": "Contraseña"
+    "passwordPlaceholder": "Contraseña",
+    "forgotPassword": "¿Olvidaste tu contraseña?",
+    "recoverPassword": "Recuperar Contraseña",
+    "recoverInstructions": "Ingresa tu correo electrónico y te enviaremos un enlace para restablecer tu contraseña.",
+    "sendResetLink": "Enviar enlace",
+    "resetEmailSent": "Se ha enviado un correo para restablecer tu contraseña. Por favor revisa tu bandeja de entrada.",
+    "backToLogin": "Volver al inicio de sesión"
   },
   "console": {
     "title": "Consola de Administración",
