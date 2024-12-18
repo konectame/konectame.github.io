@@ -1,5 +1,5 @@
 import React from 'react';
-import { HashRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import { Layout } from '@/components/layout';
 import { AuthProvider } from './contexts/auth';
 import { ProfileProvider } from '@/contexts/profile';
@@ -17,12 +17,10 @@ function App() {
       <Router basename={base}>
         <ProfileProvider>
           <Routes>
-            <Route path="/" element={<Layout />}>
-              <Route index element={<Navigate to="/admin/auth" replace />} />
-            </Route>
-            <Route path="/admin/auth" element={<AdminAuth />} />
+            <Route path="/" element={<Navigate to="admin/auth" replace />} />
+            <Route path="admin/auth" element={<AdminAuth />} />
             <Route
-              path="/admin/console"
+              path="admin/console"
               element={
                 <AdminRoute>
                   <AdminConsole />
@@ -30,7 +28,7 @@ function App() {
               }
             />
             <Route
-              path="/admin/profile"
+              path="admin/profile"
               element={
                 <AdminRoute>
                   <Profile />
@@ -38,7 +36,7 @@ function App() {
               }
             />
             {/* Catch-all redirect */}
-            <Route path="*" element={<Navigate to="/admin/auth" replace />} />
+            <Route path="*" element={<Navigate to="admin/auth" replace />} />
           </Routes>
         </ProfileProvider>
       </Router>
