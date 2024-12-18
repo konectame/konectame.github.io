@@ -18,7 +18,7 @@ function App() {
         <ProfileProvider>
           <Routes>
             <Route path="/" element={<Layout />}>
-              <Route index element={<Navigate to="/admin/console" replace />} />
+              <Route index element={<Navigate to="/admin/auth" replace />} />
             </Route>
             <Route path="/admin/auth" element={<AdminAuth />} />
             <Route
@@ -38,7 +38,7 @@ function App() {
               }
             />
             {/* Catch-all redirect */}
-            <Route path="*" element={<Navigate to="/admin/console" replace />} />
+            <Route path="*" element={<Navigate to="/admin/auth" replace />} />
           </Routes>
         </ProfileProvider>
       </Router>
