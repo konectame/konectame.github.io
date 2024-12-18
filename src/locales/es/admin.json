@@ -122,6 +122,29 @@
     }
   },
   "common": {
-    "loading": "Cargando..."
+    "loading": "Cargando...",
+    "save": "Guardar",
+    "saving": "Guardando..."
+  },
+  "profile": {
+    "title": "Configuración del Perfil",
+    "subtitle": "Administra la configuración de tu cuenta y la información del perfil",
+    "basicInfo": "Información Básica",
+    "changePassword": "Cambiar Contraseña",
+    "profileImage": "Imagen de Perfil",
+    "uploadImage": "Subir Imagen",
+    "name": "Nombre",
+    "email": "Correo Electrónico",
+    "currentPassword": "Contraseña Actual",
+    "newPassword": "Nueva Contraseña",
+    "confirmPassword": "Confirmar Nueva Contraseña",
+    "updatePassword": "Actualizar Contraseña",
+    "imageUpdateSuccess": "Imagen de perfil actualizada exitosamente",
+    "imageUpdateError": "Error al actualizar la imagen de perfil",
+    "updateSuccess": "Perfil actualizado exitosamente",
+    "updateError": "Error al actualizar el perfil",
+    "passwordUpdateSuccess": "Contraseña actualizada exitosamente",
+    "passwordUpdateError": "Error al actualizar la contraseña",
+    "passwordMismatch": "Las nuevas contraseñas no coinciden"
   }
 }

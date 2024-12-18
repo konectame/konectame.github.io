@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { auth } from '@/lib/firebase';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Outlet } from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import { signOut } from 'firebase/auth';
 import { cn } from '@/lib/utils';
@@ -325,8 +325,8 @@ export default function AdminConsole() {
       </div>
       <div className="flex-1 flex flex-col overflow-hidden">
         <TopNav />
-        <div className="flex-1 overflow-auto p-8">
-          {/* Content area */}
+        <div className="flex-1 overflow-auto bg-gray-50">
+          <Outlet />
         </div>
       </div>
     </div>

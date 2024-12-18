@@ -1,10 +1,14 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useTranslation } from 'react-i18next';
 import { signOut } from 'firebase/auth';
-import { auth } from '@/lib/firebase';
+import { auth, storage } from '@/lib/firebase';
 import { cn } from '@/lib/utils';
 import { User, LogOut, Globe, ChevronDown } from 'lucide-react';
 import { SUPPORTED_LANGUAGES } from '@/lib/constants';
+import { ref, getDownloadURL } from 'firebase/storage';
+import md5 from 'md5';
+import { Link } from 'react-router-dom';
+import { useProfile } from '@/contexts/profile';
 
 interface TopNavProps {
   className?: string;
@@ -15,6 +19,32 @@ export function TopNav({ className }: TopNavProps) {
   const [isLangMenuOpen, setIsLangMenuOpen] = useState(false);
   const [isUserMenuOpen, setIsUserMenuOpen] = useState(false);
   const currentUser = auth.currentUser;
+  const { profileImage } = useProfile();
+
+  const avatarUrl = profileImage || currentUser?.photoURL || '/default-avatar.png';
+
+  useEffect(() => {
+    const loadProfileImage = async () => {
+      if (!currentUser) return;
+
+      try {
+        // Try to get Firebase Storage image
+        const rootFolder = import.meta.env.VITE_ROOT_FOLDER;
+        const marketplaceId = import.meta.env.VITE_MARKETPLACE_ID;
+        const storageRef = ref(storage, `${rootFolder}/${marketplaceId}/users/${currentUser.uid}/profile-image`);
+        const url = await getDownloadURL(storageRef);
+        // setProfileImage(url);
+      } catch (error) {
+        // If Firebase Storage image not found, use Gravatar
+        if (currentUser.email) {
+          const hash = md5(currentUser.email.toLowerCase().trim());
+          // setProfileImage(`https://www.gravatar.com/avatar/${hash}?d=mp&s=200`);
+        }
+      }
+    };
+
+    loadProfileImage();
+  }, [currentUser]);
 
   const handleSignOut = async () => {
     try {
@@ -73,17 +103,11 @@ export function TopNav({ className }: TopNavProps) {
           onClick={() => setIsUserMenuOpen(!isUserMenuOpen)}
           className="flex items-center gap-x-2 rounded-md bg-white p-1.5 text-sm font-semibold text-gray-900 hover:bg-gray-50 focus:outline-none"
         >
-          {currentUser?.photoURL ? (
-            <img
-              className="h-8 w-8 rounded-full bg-gray-50"
-              src={currentUser.photoURL}
-              alt=""
-            />
-          ) : (
-            <div className="flex h-8 w-8 items-center justify-center rounded-full bg-gray-100">
-              <User className="h-5 w-5 text-gray-500" />
-            </div>
-          )}
+          <img
+            src={avatarUrl}
+            alt={currentUser?.displayName || 'User'}
+            className="h-8 w-8 rounded-full"
+          />
           <span className="hidden sm:inline-block">{currentUser?.displayName || currentUser?.email || t('console.user')}</span>
           <ChevronDown className="h-4 w-4 text-gray-400" />
         </button>
@@ -102,16 +126,14 @@ export function TopNav({ className }: TopNavProps) {
                 </p>
               </div>
               <div className="border-t border-primary-light" />
-              <button
-                onClick={() => {
-                  setIsUserMenuOpen(false);
-                  // Add profile navigation here
-                }}
-                className="flex w-full items-center gap-x-2 px-4 py-2 text-sm text-primary-dark hover:bg-primary-light"
+              <Link
+                to="/admin/profile"
+                className="block px-4 py-2 text-sm text-primary-dark hover:bg-primary-light"
+                onClick={() => setIsUserMenuOpen(false)}
               >
-                <User className="h-4 w-4" />
-                {t('console.profile')}
-              </button>
+                {t('profile.title')}
+              </Link>
+              <div className="border-t border-primary-light" />
               <button
                 onClick={() => {
                   setIsUserMenuOpen(false);

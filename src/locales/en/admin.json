@@ -122,6 +122,29 @@
     }
   },
   "common": {
-    "loading": "Loading..."
+    "loading": "Loading...",
+    "save": "Save",
+    "saving": "Saving..."
+  },
+  "profile": {
+    "title": "Profile Settings",
+    "subtitle": "Manage your account settings and profile information",
+    "basicInfo": "Basic Information",
+    "changePassword": "Change Password",
+    "profileImage": "Profile Image",
+    "uploadImage": "Upload Image",
+    "name": "Name",
+    "email": "Email Address",
+    "currentPassword": "Current Password",
+    "newPassword": "New Password",
+    "confirmPassword": "Confirm New Password",
+    "updatePassword": "Update Password",
+    "imageUpdateSuccess": "Profile image updated successfully",
+    "imageUpdateError": "Failed to update profile image",
+    "updateSuccess": "Profile updated successfully",
+    "updateError": "Failed to update profile",
+    "passwordUpdateSuccess": "Password updated successfully",
+    "passwordUpdateError": "Failed to update password",
+    "passwordMismatch": "New passwords do not match"
   }
 }
