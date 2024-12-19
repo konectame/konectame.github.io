@@ -47,7 +47,7 @@ export default function AdminAuth() {
         });
       }
 
-      navigate('/admin/console');
+      navigate('/admin');
     } catch (err: any) {
       console.error('Auth error:', err);
       setError(err.message);

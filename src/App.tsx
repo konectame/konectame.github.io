@@ -19,22 +19,24 @@ function App() {
           <Routes>
             <Route path="/" element={<Navigate to="/admin/auth" replace />} />
             <Route path="/admin/auth" element={<AdminAuth />} />
+            
+            {/* Protected routes with AdminConsole */}
             <Route
-              path="/admin/console"
+              path="/admin"
               element={
                 <AdminRoute>
                   <AdminConsole />
                 </AdminRoute>
               }
-            />
-            <Route
-              path="/admin/profile"
-              element={
-                <AdminRoute>
-                  <Profile />
-                </AdminRoute>
-              }
-            />
+            >
+              {/* Default route for /admin */}
+              <Route index element={<></>} />
+              
+              {/* Admin routes */}
+              <Route path="profile" element={<Profile />} />
+              {/* Add other admin routes here */}
+            </Route>
+
             {/* Catch-all redirect */}
             <Route path="*" element={<Navigate to="/admin/auth" replace />} />
           </Routes>
